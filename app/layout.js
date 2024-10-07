@@ -1,6 +1,9 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import MobileNavbar from "./components/MoblieNavbar";
+import CartButton from "./components/CartButton.jsx";
+import { CartProvider } from "./context/CartContext.js";
+
 const geistSans = localFont({
   src: "./fonts/ProximaNovaSemibold.woff",
   variable: "--font-geist-sans",
@@ -23,8 +26,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
-        {children}
-        <MobileNavbar /> 
+        <CartProvider>
+          {children}
+          <MobileNavbar />
+          <CartButton />
+        </CartProvider>
       </body>
     </html>
   );
